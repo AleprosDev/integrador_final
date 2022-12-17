@@ -1,6 +1,6 @@
 import './App.css';
 import Buscador from './componentes/Buscador';
-import Card from './componentes/Card';
+import Card, { ListaCard } from './componentes/Card';
 import Loading from './componentes/Loading';
 import NavBar from './componentes/NavBar';
 import { getListadoNoticias } from './servicios/ListadoAPI';
@@ -27,6 +27,7 @@ function App() {
       {isLoading && <Loading/>}
       <Buscador onBuscar={onBuscar}/>
       {noticias && <Card/>}
+      {noticias && <ListaCard noticias={noticias}/> }
       {noticias && <Paginador/>}
     </div>
   );
