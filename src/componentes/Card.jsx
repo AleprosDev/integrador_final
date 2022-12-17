@@ -1,10 +1,16 @@
+
+import { DateTime } from 'luxon'
 import React from 'react'
 
 function Card({
-    noticias, description, urlToImg
+    noticias, description, urlToImg, url, fechaPublicacion
 }) {
-    console.log(noticias)
+
+console.log(fechaPublicacion)
+
   return (
+
+    
     <div>
         <div className="flex justify-center">
             <div className="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg m-2">
@@ -14,7 +20,8 @@ function Card({
                     <h5 className="text-gray-900 text-xl font-medium mb-2">{noticias}</h5>
                     <p className="text-gray-700 text-base mb-4">{description}
                     </p>
-                    <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+                    <p className="text-gray-600 text-xs">{url}</p>
+                    <p className="text-gray-600 text-xs">Publicado el: {DateTime.fromISO(fechaPublicacion).toFormat('dd-MM-yyyy')} a las {DateTime.fromISO(fechaPublicacion).toFormat('HH:mm')}</p>
                 </div>
             </div>
         </div>
@@ -22,17 +29,25 @@ function Card({
   )
 }
 
+
+    
+
 export const ListaCard = ({noticias}) => {
+
     return noticias.map((noticias, index) => {
         return <div key={index}>
             <Card noticias={noticias.title}
             description={noticias.description}
-            urlToImg={noticias.urlToImage}/>
-
+            urlToImg={noticias.urlToImage}
+            url={noticias.url}
+            fechaPublicacion = {noticias.publishedAt}
+            />
+            
+            
             </div>
-        
+      
     }
-
+    
     )
 }
 
