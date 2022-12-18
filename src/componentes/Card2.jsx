@@ -2,7 +2,7 @@
 import { DateTime } from 'luxon'
 import React from 'react'
 
-function Card({
+function Card2({
     noticias, description, urlToImg, url, fechaPublicacion, origenNoticia, pagina
 }) {
 
@@ -36,7 +36,7 @@ export const ListaCard = ({noticias}) => {
 
     return noticias.map((noticias, index) => {
         return <div key={index}>
-            <Card noticias={noticias.title}
+            <Card2 noticias={noticias.title}
             description={noticias.description}
             urlToImg={noticias.urlToImage}
             url={noticias.url}
@@ -53,4 +53,4 @@ export const ListaCard = ({noticias}) => {
     )
 }
 
-export default Card
+export default Card2
