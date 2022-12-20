@@ -32,17 +32,17 @@ function Card({
     
 
 export const ListaCard = ({noticias}) => {
-    
 
-    return noticias.map((noticias, index) => {
-        return <div key={index}>
-            <Card noticias={noticias.title}
-            description={noticias.description}
-            urlToImg={noticias.urlToImage}
-            url={noticias.url}
-            fechaPublicacion = {noticias.publishedAt}
-            origenNoticia={noticias.source.name}
-            pagina={noticias.page}
+    return noticias.map((noticia, index) => {
+        console.log(noticia)
+        return <div key={'card'+index}>
+            <Card noticias={noticia.title}
+            description={noticia.description}
+            urlToImg={noticia.urlToImage}
+            url={noticia.url}
+            fechaPublicacion = {noticia.publishedAt}
+            origenNoticia={noticia.source.name}
+            pagina={noticia.page}
             />
             
             

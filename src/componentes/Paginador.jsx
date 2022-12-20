@@ -1,45 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Paginador(
   {
-    cantidadDePaginas
+    cantidadDePaginas,
+    onChange
+    
   }
 ) {
-  return (
-    <div className='items-end my-0'>
-        <nav className='mt-[50px]' aria-label="Page navigation example">
-  <ul className="inline-flex items-center">
-    <li>
-      <a href="/" className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        <span className="sr-only">{cantidadDePaginas}</span>
-        <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
-      </a>
-    </li>
-    <li>
-      <a href="/" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-    </li>
-    <li>
-      <a href="/" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-    </li>
-    <li>
-      <a href="/" aria-current="page" className="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-    </li>
-    <li>
-      <a href="/" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-    </li>
-    <li>
-      <a href="/" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-    </li>
-    <li>
-      <a href="/" className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        <span className="sr-only">Next</span>
-        <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-      </a>
-    </li>
-  </ul>
-</nav>
-    </div>
-  )
+
+  const [paginaActual, setPaginaActual] = useState(4);
+  let maxPaginas = 10;
+  let items = [];
+  let ladoIzquierdo = paginaActual -2;
+  if (ladoIzquierdo <= 0) ladoIzquierdo = 1;
+  let ladoDerecho = paginaActual +2;
+  if (ladoDerecho > maxPaginas) ladoDerecho = maxPaginas;
+  for (let numero = ladoIzquierdo ; numero <= ladoDerecho; numero++) {
+    items.push(
+      <div key={numero} className={(
+        numero === paginaActual ? 'cursor-pointer text-white bg-orange-600 hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white' :
+        'cursor-pointer text-orange-600 bg-white hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white')}
+        onClick={() => {
+          setPaginaActual(numero)}}>
+            {numero}
+      </div>,
+    );
+  }
+
+  const proximaPagina = () => {
+    if (paginaActual<maxPaginas) {
+      setPaginaActual(paginaActual+1)
+    }
+  }
+  const previaPagina = () => {
+    if (paginaActual>1) {
+      setPaginaActual(paginaActual-1)
+    }
+  }
+
+  const paginationRender = (
+      <div className='flex justify-center flex-col items-center '>
+        <div> currentPage : { paginaActual } </div>
+            <div className="flex">
+              <div className=" hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white' : 'cursor-pointer text-orange-600 bg-white" onClick={previaPagina}> &lsaquo; </div>
+              {items}
+              <div className=" hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white' : 'cursor-pointer text-orange-600 bg-white" onClick={proximaPagina}> &rsaquo; </div>
+            </div>
+      </div>
+  );
+  return (paginationRender);
 }
+
 
 export default Paginador
