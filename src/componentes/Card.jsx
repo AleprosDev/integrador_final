@@ -35,8 +35,10 @@ export const ListaCard = ({noticias}) => {
 
     return noticias.map((noticia, index) => {
         console.log(noticia)
-        return <div key={'card'+index}>
-            <Card noticias={noticia.title}
+        return <div key={'card'+index} className='flex' >
+            <Card
+            className='flex flex-wrap flex-row'
+            noticias={noticia.title}
             description={noticia.description}
             urlToImg={noticia.urlToImage}
             url={noticia.url}

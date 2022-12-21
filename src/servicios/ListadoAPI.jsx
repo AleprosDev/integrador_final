@@ -1,4 +1,4 @@
-const API_KEY = 'b06fd472dfea491985e13a0d3e65f29d'
+const API_KEY = '3c95991b12724b278b73054a585c5b6f'
 const Noticias_API = 'https://newsapi.org/v2/everything'
 
 export const getListadoNoticias = async (criterioBusqueda, paginaActual) => {
