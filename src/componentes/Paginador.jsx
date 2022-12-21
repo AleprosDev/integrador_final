@@ -8,10 +8,11 @@ function Paginador(
   }
 ) {
 
-  const [paginaActual, setPaginaActual] = useState(4);
+  const [paginaActual, setPaginaActual] = useState(1);
 
   const cambiaPagina = (_evento, pagina) => {
     onChange(pagina)
+    console.log(onChange(pagina))
   }
 
 
@@ -28,7 +29,6 @@ function Paginador(
         className={( 
         numero === paginaActual ? 'cursor-pointer text-white bg-orange-600 hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white transition ease-in-out delay-50' :
         'cursor-pointer text-orange-600 bg-white hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white')}
-        onChange={cambiaPagina}
         onClick={() => {
           setPaginaActual(numero)}}>
             {numero}
@@ -43,6 +43,7 @@ function Paginador(
   const proximaPagina = () => {
     if (paginaActual<maxPaginas) {
       setPaginaActual(paginaActual+1)
+      onChange={cambiaPagina}
       return (
         <div className='hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[5px] w-[5px] m-[5px] shadow hover:text-white : cursor-pointer text-orange-600 bg-white'>
         </div>
@@ -52,12 +53,13 @@ function Paginador(
   const previaPagina = () => {
     if (paginaActual>1) {
       setPaginaActual(paginaActual-1)
+      onChange={cambiaPagina}
     }
   }
 
   const paginacionRender = (
       <div className='flex justify-center flex-col items-center font-bold'>
-        <div> Pagina { paginaActual } de {cantidadDePaginas}  </div>
+        <div onChange={cambiaPagina}> Pagina { paginaActual } de {cantidadDePaginas}  </div>
             <div className="flex">
               <div className=" hover:bg-orange-600 text-base text-center px-[10px] pt-[9px] rounded-[50%] h-[40px] w-[40px] m-[5px] shadow hover:text-white items-center : cursor-pointer text-orange-600 bg-white transition ease-in-out delay-50" onClick={previaPagina}> &lsaquo; </div>
               {items}

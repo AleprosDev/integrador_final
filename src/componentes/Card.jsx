@@ -7,12 +7,12 @@ function Card({
 }) {
 
   return (
-        
-                <div className="md:max-w-xl rounded-lg bg-white hover:bg-slate-200 transition ease-in-out delay-50 shadow-lg m-2 hover:-translate-y-1 hover:scale-200">
+            <div className='inline-flex'>
+                <div className="inline-flex md:max-w-[32rem] rounded-lg bg-white hover:bg-slate-200 transition ease-in-out delay-50 shadow-lg m-2 hover:-translate-y-1 hover:scale-200">
                     <a href={url} target="_blank" rel='noreferrer'>
                     <img className="" src={urlToImg === 'N/A' ? '../assets/img/imgNoEncontrada.jpg' : urlToImg} alt="" />
                     
-                    <div className="p-6">
+                    <div className="p-4 flex-row">
                         <h5 className="text-gray-900 text-xl font-medium mb-2">{noticias}</h5>
                         <p className="text-gray-700 text-base mb-4">{description}
                         </p>
@@ -23,6 +23,7 @@ function Card({
                     </div>
                     </a>
                 </div>
+            </div>
 
 
   )
