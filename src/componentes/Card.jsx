@@ -3,12 +3,12 @@ import { DateTime } from 'luxon'
 import React from 'react'
 
 function Card({
-    noticias, description, urlToImg, url, fechaPublicacion, origenNoticia, pagina
+    noticias, description, urlToImg, url, fechaPublicacion, origenNoticia, pagina,totalDeResultado
 }) {
 
   return (
             <div className='inline-flex'>
-                <div className="inline-flex md:max-w-[32rem] rounded-lg bg-white hover:bg-slate-200 transition ease-in-out delay-50 shadow-lg m-2 hover:-translate-y-1 hover:scale-200">
+                <div className="inline-flex md:max-w-[100%] rounded-lg bg-white hover:bg-slate-200 transition ease-in-out delay-50 shadow-lg m-2 hover:-translate-y-1 hover:scale-200">
                     <a href={url} target="_blank" rel='noreferrer'>
                     <img className="" src={urlToImg === 'N/A' ? '../assets/img/imgNoEncontrada.jpg' : urlToImg} alt="" />
                     
@@ -20,6 +20,7 @@ function Card({
                         <p className="text-gray-600 text-xs">{pagina}</p>
                         <p className="text-gray-600 text-xs">Publicado por: {origenNoticia}</p>
                         <p className="text-gray-600 text-xs">Fecha de publicacion: {DateTime.fromISO(fechaPublicacion).toFormat('dd-MM-yyyy')} a las {DateTime.fromISO(fechaPublicacion).toFormat('HH:mm')}</p>
+                        <p className="text-gray-600 text-xs">total de resultados: {totalDeResultado}</p>
                     </div>
                     </a>
                 </div>
@@ -34,7 +35,7 @@ function Card({
 
 export const ListaCard = ({noticias}) => {
 
-    return noticias.map((noticia, index) => {
+    return noticias.map((noticia, index, totalResults) => {
         console.log(noticia)
         return <div key={'card'+index} className='flex' >
             <Card
@@ -46,6 +47,7 @@ export const ListaCard = ({noticias}) => {
             fechaPublicacion = {noticia.publishedAt}
             origenNoticia={noticia.source.name}
             pagina={noticia.page}
+            totalDeResultado={noticia.totalResults}
             />
             
             

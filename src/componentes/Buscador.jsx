@@ -8,7 +8,6 @@ function Buscador({ onBuscar }) {
   
 
 
-
   return (
     <div>
       <form className="items-center ml-[2rem] max-w-[30em] justify-center">
@@ -23,7 +22,7 @@ function Buscador({ onBuscar }) {
 
         { mostrarAlerta2 && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2" role="alert">
-          No hay resultados para la búsqueda. Ingrese alguna palabra.
+          No hay resultados para la búsqueda. Ingrese alguna palabra por favor.
           <button className="bg-red-300 hover:bg-red-500 text-black font-bold py-2 px-4 rounded transition-opacity ease-linear delay-75 mt-2 items-center justify-center"
           onClick={() => setMostrarAlerta2(false)}>Cerrar</button>
         </div>

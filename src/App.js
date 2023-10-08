@@ -17,7 +17,7 @@ function App() {
   const [cantidadDePaginas, setCantidadDePaginas] = useState(1)
   const [searchParams, setSearchParams] = useSearchParams();
   const [pagina, setPagina] = useState(1);
-  const [totalResultado, setTotalResultado] = useState('')
+
 
   useEffect(() => {
     const buscarNoticias = async () => {
@@ -26,7 +26,7 @@ function App() {
       setNoticias(noticia)
       setIsLoading(false)
       setCantidadDePaginas(Math.ceil(parseInt(totalResults)/10))
-      setTotalResultado(totalResults)
+      
     }
 
     if(searchParams.get('query')) {
@@ -42,15 +42,12 @@ function App() {
     setPagina(pagina)
   }
 
-  const totalDePaginas = (totalResultado) => {
-    setTotalResultado(totalResultado)
-    console.log(totalDePaginas)
-  }
+  
   
   return (
     <div className="App">
       <NavBar/>
-      <TotalResultados totalResults={totalDePaginas}/>
+      <TotalResultados/>
       {isLoading && <Loading/>}
       <Buscador onBuscar={onBuscar}/>
       {noticias && <ListaCard noticias={noticias}/> }

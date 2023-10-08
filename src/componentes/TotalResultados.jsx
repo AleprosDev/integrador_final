@@ -1,11 +1,12 @@
 import React from 'react'
-import totalDePaginas from '../App'
 
-function TotalResultados() { 
+function TotalResultados( {
+    totalDeResultado
+}) { 
     
   return (
     <div>
-        <p>La cantidad de paginas son: {totalDePaginas}</p>
+        <p>La cantidad de paginas son: {totalDeResultado}</p>
     </div>
   )
 }
